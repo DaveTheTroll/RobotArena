@@ -1,3 +1,4 @@
 *.pyc
 /RobotArena/ArenaForm/bin/Debug
 /RobotArena/ArenaWeb/bin
+*.pdb
