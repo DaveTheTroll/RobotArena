@@ -2,3 +2,12 @@
 /RobotArena/ArenaForm/bin/Debug
 /RobotArena/ArenaWeb/bin
 *.pdb
+/RobotArena/RobotArena/obj
+/RobotArena/Guidance.Graphing/bin
+/RobotArena/Guidance.Graphing/obj
+/RobotArena/ArenaWeb/obj
+/RobotArena/ArenaFormsControls/obj
+/RobotArena/ArenaFormsControls/bin
+/RobotArena/ArenaForm/obj
+/RobotArena/ArenaForm/bin
+/RobotArena/RobotArena.v11.suo
