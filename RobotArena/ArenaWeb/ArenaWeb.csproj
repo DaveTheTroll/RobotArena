@@ -209,6 +209,7 @@
     <Content Include="ArenaList.aspx" />
     <Content Include="Arena.aspx" />
     <Content Include="Robot.aspx" />
+    <Content Include="WhoAmI.aspx" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="RobotProperties.ascx" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -384,6 +385,13 @@
     </Compile>
     <Compile Include="Robot.aspx.designer.cs">
       <DependentUpon>Robot.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WhoAmI.aspx.cs">
+      <DependentUpon>WhoAmI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WhoAmI.aspx.designer.cs">
+      <DependentUpon>WhoAmI.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

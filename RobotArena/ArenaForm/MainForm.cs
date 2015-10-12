@@ -12,7 +12,7 @@ namespace ArenaForm
         {
             InitializeComponent();
 
-            robot = arena.AddRobot();
+            robot = arena.AddRobot("");
             propertyGridRobot.SelectedObject = robot;
 
             scalingPanelArena.IncludePoint(-1, -1);

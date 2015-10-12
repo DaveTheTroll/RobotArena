@@ -16,6 +16,11 @@ namespace ArenaWeb
         {
             RobotProperties.Handle = int.Parse(Request.QueryString["robot"]);
             robot = Robot.AllRobots.GetRobot(RobotProperties.Handle);
+
+            bool myRobot = Context.User.Identity.Name == robot.Owner;
+            ButtonName.Enabled = myRobot;
+            ButtonDelete.Enabled = myRobot;
+
             if (!IsPostBack)
                 TextBoxName.Text = robot.ToString();
         }

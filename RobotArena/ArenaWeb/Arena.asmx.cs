@@ -10,6 +10,8 @@ using RobotArena;
 
 namespace ArenaWeb
 {
+    public class SecurityException : Exception { }
+
     [WebService(Namespace = "http://arena.thetroll.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
@@ -28,7 +30,7 @@ namespace ArenaWeb
         public int CreateRobot(int arenaHandle)
         {
             Arena arena = Global.Arenas.GetArena(arenaHandle);
-            Robot robot = arena.AddRobot();
+            Robot robot = arena.AddRobot(WhoAmI());
             return robot.Handle;
         }
 
@@ -36,6 +38,10 @@ namespace ArenaWeb
         public void SetSpeedDemand(int robotHandle, float speed, float steer)
         {
             Robot robot = Robot.AllRobots.GetRobot(robotHandle);
+
+            if (WhoAmI() != robot.Owner)
+                throw new SecurityException();
+
             robot.SpeedDemand = speed;
             robot.SteerDemand = steer;
         }
@@ -65,7 +71,28 @@ namespace ArenaWeb
         public void DeleteRobot(int robotHandle)
         {
             Robot robot = Robot.AllRobots.GetRobot(robotHandle);
+            if (WhoAmI() != robot.Owner)
+                throw new SecurityException();
+
             robot.Arena.Delete(robot);
+        }
+
+        [WebMethod]
+        public string WhoAmI()
+        {
+            return Context.User.Identity.Name;
+        }
+
+        [WebMethod]
+        public bool Login(string username, string password)
+        {
+            if (System.Web.Security.Membership.ValidateUser(username, password))
+            {
+                System.Web.Security.FormsAuthentication.SetAuthCookie(username, true);
+                return true;
+            }
+            else
+                return false;
         }
     }
 }
