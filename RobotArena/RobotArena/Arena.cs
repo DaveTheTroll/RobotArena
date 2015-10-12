@@ -24,10 +24,10 @@ namespace RobotArena
         public string Name { get; set; }
 
         List<Robot> robots = new List<Robot>();
-        public Robot AddRobot()
+        public Robot AddRobot(string owner)
         {
             Update();
-            Robot robot = new Robot(this);
+            Robot robot = new Robot(this, owner);
             robots.Add(robot);
             return robot;
         }

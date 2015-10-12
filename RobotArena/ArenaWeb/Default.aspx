@@ -17,5 +17,6 @@
         <li><a href="Arena.asmx">Arena Service</a></li>
         <li><a href="ArenaList.aspx">Arena List</a></li>
         <li><a href="SVGTest.aspx">SVG Test</a></li>
+        <li><a href="WhoAmI.aspx">Who am I?</a></li>
     </ul>
 </asp:Content>

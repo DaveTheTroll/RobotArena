@@ -6,10 +6,11 @@ namespace RobotArena
 {
     public class Robot : IDisposable
     {
-        internal Robot(Arena arena)
+        internal Robot(Arena arena, string owner)
         {
             this.arena = arena;
             this.Color = Color.White;
+            this.Owner = owner;
 
             lock (typeof(Robot))
             {
@@ -23,6 +24,8 @@ namespace RobotArena
         public int Handle { get { return handle; } }
 
         public string Name { get; set; }
+
+        public string Owner { get; private set; }
 
         public void Dispose()
         {

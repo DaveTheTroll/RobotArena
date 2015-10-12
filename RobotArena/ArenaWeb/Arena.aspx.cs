@@ -48,7 +48,7 @@ namespace ArenaWeb
 
         protected void ButtonAddRobot_Click(object sender, EventArgs e)
         {
-            Robot robot = arena.AddRobot();
+            Robot robot = arena.AddRobot(Context.User.Identity.Name);
             Response.Redirect(string.Format("Robot.aspx?robot={0}", robot.Handle));
         }
 

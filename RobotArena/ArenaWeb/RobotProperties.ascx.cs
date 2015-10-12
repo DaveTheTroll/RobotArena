@@ -21,6 +21,11 @@ namespace ArenaWeb
         {
             robot = Robot.AllRobots.GetRobot(Handle);
 
+            bool myRobot = Context.User.Identity.Name == robot.Owner;
+            TextBoxSpeedDemand.Enabled = myRobot;
+            TextBoxSteerDemand.Enabled = myRobot;
+            TextBoxColor.Enabled = myRobot;
+
             if (!IsPostBack)
             {
                 TextBoxSpeedDemand.Text = robot.SpeedDemand.ToString();
