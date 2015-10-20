@@ -61,10 +61,39 @@ namespace ArenaWeb
         }
 
         [WebMethod]
-        public void SetColor(int robotHandle, string color)
+        public void SetColorByName(int robotHandle, string color)
         {
             Robot robot = Robot.AllRobots.GetRobot(robotHandle);
             robot.Color = Guidance.Drawing.Color_Extension.Parse(color);
+        }
+
+        [WebMethod]
+        public void SetColor(int robotHandle, byte a, byte r, byte g, byte b)
+        {
+            Robot robot = Robot.AllRobots.GetRobot(robotHandle);
+            robot.Color = System.Drawing.Color.FromArgb(a, r, g, b);
+        }
+
+        struct ARGB
+        {
+            public ARGB(System.Drawing.Color color)
+            {
+                A = color.A;
+                R = color.R;
+                G= color.G;
+                B = color.B;
+            }
+            public byte A;
+            public byte R;
+            public byte G ;
+            public byte B;
+        }
+
+        [WebMethod]
+        public string GetColor(int robotHandle)
+        {
+            Robot robot = Robot.AllRobots.GetRobot(robotHandle);
+            return serializer.Serialize(new ARGB(robot.Color));
         }
 
         [WebMethod]
