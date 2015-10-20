@@ -17,7 +17,7 @@ class Arena:
         robotState = robotArena.RobotState(self.client,handle)
         return robotState
 if __name__ == "__main__":
-    url = "http://192.168.0.14:49711/Arena.asmx?WSDL"
+    url = "http://localhost:49711/Arena.asmx?WSDL"
     arena = int(input("Arena handle? "))
     thisArena = Arena(url,arena)
     thisArena.getRobots()
