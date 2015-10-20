@@ -22,10 +22,11 @@ class PyGameArena(PyGameBase):
             Y = 200-self.arena.getRobotState(robot).Y*10
             pygame.draw.ellipse(self.surface,(255,255,255),(X,Y,20,20))
 
-url = "http://192.168.0.14:49711/Arena.asmx?WSDL"
-arena = int(input("Arena handle? "))
-thisArena = arenaMonitor.Arena(url,arena)
-print("thisArena done")
-thisPyGame = PyGameArena(400,400,40,thisArena)
-print("thisPyGame done")
-thisPyGame.Start()
+if __name__ == "__main__":
+    url = "http://localhost:49711/Arena.asmx?WSDL"
+    arena = int(input("Arena handle? "))
+    thisArena = arenaMonitor.Arena(url,arena)
+    print("thisArena done")
+    thisPyGame = PyGameArena(400,400,40,thisArena)
+    print("thisPyGame done")
+    thisPyGame.Start()
