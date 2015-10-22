@@ -14,10 +14,10 @@ class Robot(object):
         return self._colour
 
     @colour.setter
-    def colour(self,value):
-        self._colour = value
-        self.client.service.SetColor(self.handle,value)
-
+    def colour(self,r,g,b):
+        self._colour = (r,g,b)
+        self.client.service.SetColor(self.handle,255,r,g,b)
+        
     def setSpeed(self,speed,steer):
         self.client.service.SetSpeedDemand(self.handle,speed,steer)
 

@@ -16,6 +16,14 @@ class Arena:
     def getRobotState(self,handle):
         robotState = robotArena.RobotState(self.client,handle)
         return robotState
+
+    def getRobotColor(self,handle):
+        color = self.client.service.GetColor(handle)
+        colorLoads = json.loads(color)
+        r = colorLoads["R"]
+        g = colorLoads["G"]
+        b = colorLoads["B"]
+        return (r,g,b)
 if __name__ == "__main__":
     url = "http://localhost:49711/Arena.asmx?WSDL"
     arena = int(input("Arena handle? "))
