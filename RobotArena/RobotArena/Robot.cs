@@ -11,6 +11,7 @@ namespace RobotArena
             this.arena = arena;
             this.Color = Color.White;
             this.Owner = owner;
+            this.Parameters = arena.RobotParameters;
 
             lock (typeof(Robot))
             {
@@ -48,6 +49,7 @@ namespace RobotArena
         public Arena Arena { get { return arena; } }
 
         public int ArenaHandle { get { return arena.Handle; } }
+        public RobotParameters Parameters { get; set; }
 
         public Pose Location { get; private set; }
         public double Speed { get; private set; }
@@ -58,26 +60,19 @@ namespace RobotArena
         [ScriptIgnoreAttribute]
         public Color Color { get; set; }
 
-        const double maxAcceleration = 0.1;
-        const double maxSpeed = 1;
-        const double minSpeed = -1;
-
-        const double maxSteerRate = 0.1;
-        const double maxSteer = 1;
-
         internal void Tick(TimeSpan deltaTime)
         {
             lock (this)
             {
                 double deltaSpeed = SpeedDemand - Speed;
-                if (Math.Abs(deltaSpeed) > maxAcceleration * deltaTime.TotalSeconds)
-                    deltaSpeed = Math.Sign(deltaSpeed) * maxAcceleration * deltaTime.TotalSeconds;
-                Speed = Math.Max(Math.Min(Speed + deltaSpeed, maxSpeed), minSpeed);
+                if (Math.Abs(deltaSpeed) > Parameters.MaxAcceleration * deltaTime.TotalSeconds)
+                    deltaSpeed = Math.Sign(deltaSpeed) * Parameters.MaxAcceleration * deltaTime.TotalSeconds;
+                Speed = Math.Max(Math.Min(Speed + deltaSpeed, Parameters.MaxSpeed), Parameters.MinSpeed);
 
                 double deltaSteer = SteerDemand - Steer;
-                if (Math.Abs(deltaSteer) > maxSteerRate * deltaTime.TotalSeconds)
-                    deltaSteer = Math.Sign(deltaSteer) * maxSteerRate * deltaTime.TotalSeconds;
-                Steer = Math.Max(Math.Min(Steer + deltaSteer, maxSteer), -maxSteer);
+                if (Math.Abs(deltaSteer) > Parameters.MaxSteerRate * deltaTime.TotalSeconds)
+                    deltaSteer = Math.Sign(deltaSteer) * Parameters.MaxSteerRate * deltaTime.TotalSeconds;
+                Steer = Math.Max(Math.Min(Steer + deltaSteer, Parameters.MaxSteer), -Parameters.MaxSteer);
 
                 Location = new Pose(Location.X + Speed * deltaTime.TotalSeconds * Location.Heading.Cos,
                     Location.Y + Speed * deltaTime.TotalSeconds * Location.Heading.Sin,

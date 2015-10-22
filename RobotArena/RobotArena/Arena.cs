@@ -13,7 +13,7 @@ namespace RobotArena
             {
                 handle = nextArena++;
             }
-
+            this.RobotParameters = new RobotParameters();
             lastUpdate = DateTime.Now;
         }
         static int nextArena = 0;
@@ -34,6 +34,8 @@ namespace RobotArena
         [System.Web.Script.Serialization.ScriptIgnore]
         public IEnumerable<Robot> Robots { get { return robots; } }
         public IEnumerable<int> RobotHandles { get { return robots.Select(r => r.Handle); } }
+
+        public RobotParameters RobotParameters { get; private set; }
 
         public void Delete(Robot robot)
         {

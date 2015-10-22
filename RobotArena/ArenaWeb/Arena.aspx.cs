@@ -29,6 +29,12 @@ namespace ArenaWeb
             {
                 UpdateRobotList();
                 TextBoxName.Text = arena.ToString();
+
+                TextBoxMaxAcceleration.Text = arena.RobotParameters.MaxAcceleration.ToString();
+                TextBoxMaxSpeed.Text = arena.RobotParameters.MaxSpeed.ToString();
+                TextBoxMinSpeed.Text = arena.RobotParameters.MinSpeed.ToString();
+                TextBoxMaxSteerRate.Text = arena.RobotParameters.MaxSteerRate.ToString();
+                TextBoxMaxSteer.Text = arena.RobotParameters.MaxSteer.ToString();
             }
         }
 
@@ -65,6 +71,21 @@ namespace ArenaWeb
         protected void ButtonName_Click(object sender, EventArgs e)
         {
             arena.Name = TextBoxName.Text;
+        }
+
+        protected void ButtonParameters_Click(object sender, EventArgs e)
+        {
+            float value;
+            if (float.TryParse(TextBoxMaxAcceleration.Text, out value))
+                arena.RobotParameters.MaxAcceleration = value;
+            if (float.TryParse(TextBoxMaxSpeed.Text, out value))
+                arena.RobotParameters.MaxSpeed = value;
+            if (float.TryParse(TextBoxMinSpeed.Text, out value))
+                arena.RobotParameters.MinSpeed = value;
+            if (float.TryParse(TextBoxMaxSteerRate.Text, out value))
+                arena.RobotParameters.MaxSteerRate = value;
+            if (float.TryParse(TextBoxMaxSteer.Text, out value))
+                arena.RobotParameters.MaxSteer = value;
         }
     }
 }

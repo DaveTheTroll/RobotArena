@@ -20,4 +20,17 @@
     <hr />
     <asp:TextBox ID="TextBoxName" runat="server" />
     <asp:Button ID="ButtonName" runat="server" Text="Change" OnClick="ButtonName_Click" />
+    <hr />
+    <asp:UpdatePanel ID="UpdatePanelRobotProperties" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <table>
+                <tr><th>MaxAcceleration</th><td><asp:TextBox ID="TextBoxMaxAcceleration" runat="server" /></td><td>ms<sup>-2</sup></td></tr>
+                <tr><th>MaxSpeed</th><td><asp:TextBox ID="TextBoxMaxSpeed" runat="server" /></td><td>ms<sup>-1</sup></td></tr>
+                <tr><th>MinSpeed</th><td><asp:TextBox ID="TextBoxMinSpeed" runat="server" /></td><td>ms<sup>-1</sup></td></tr>
+                <tr><th>MaxSteerRate</th><td><asp:TextBox ID="TextBoxMaxSteerRate" runat="server" /></td><td>rads<sup>-2</sup></td></tr>
+                <tr><th>MaxSteer</th><td><asp:TextBox ID="TextBoxMaxSteer" runat="server" /></td><td>rads<sup>-1</sup></td></tr>
+            </table>
+            <asp:Button ID="ButtonParameters" runat="server" Text="Update Parameters" OnClick="ButtonParameters_Click" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
