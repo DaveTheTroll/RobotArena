@@ -63,6 +63,7 @@ namespace SVGControls
         protected virtual void AddAttributes(HtmlTextWriter writer)
         {
             writer.AddAttribute("fill", Fill);
+            writer.AddAttribute("fill-opacity", Fill.A / 255.0f);
             writer.AddAttribute("stroke", Stroke);
 
             writer.AddAttribute("transform", string.Format("translate({0}, {1}) scale({2}) rotate({3})", X, Y, Scale, Rotation));
