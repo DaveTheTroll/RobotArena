@@ -28,7 +28,8 @@ class JoystickArena(PyGameBase):
         for robot in self.arena.robots:
             X = self.arena.getRobotState(robot).X*10+100
             Y = 200-self.arena.getRobotState(robot).Y*10
-            pygame.draw.ellipse(self.surface,(255,255,255),(X,Y,20,20))
+            color = self.arena.getRobotColor(robot)
+            pygame.draw.ellipse(self.surface,color,(X,Y,20,20))
 if __name__ == "__main__":
     url = "http://localhost:49711/Arena.asmx?WSDL"
     arena = int(input("Arena handle? "))
