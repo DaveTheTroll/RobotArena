@@ -23,7 +23,7 @@ class PyGameArena(PyGameBase):
             pygame.draw.ellipse(self.surface,(255,255,255),(X,Y,20,20))
 
 if __name__ == "__main__":
-    url = "http://localhost:49711/Arena.asmx?WSDL"
+    url = "http://192.168.10.24:49711/Arena.asmx?WSDL"
     arena = int(input("Arena handle? "))
     thisArena = arenaMonitor.Arena(url,arena)
     print("thisArena done")
