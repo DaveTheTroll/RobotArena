@@ -5,6 +5,7 @@ class Robot(object):
     def __init__(self,url,arena):
         self.client = Client(url)
         self.handle = self.client.service.CreateRobot(arena)
+        self._colour = (100,100,100)
 
     def destroy(self):
         self.client.service.DeleteRobot(self.handle)
@@ -14,9 +15,9 @@ class Robot(object):
         return self._colour
 
     @colour.setter
-    def colour(self,r,g,b):
-        self._colour = (r,g,b)
-        self.client.service.SetColor(self.handle,255,r,g,b)
+    def colour(self,C):
+        self._colour = C
+        self.client.service.SetColor(self.handle,255,C[0],C[1],C[2])
         
     def setSpeed(self,speed,steer):
         self.client.service.SetSpeedDemand(self.handle,speed,steer)
