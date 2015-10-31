@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using RobotArena;
+using Guidance.Drawing;
 
 namespace ArenaWeb
 {
@@ -30,7 +31,7 @@ namespace ArenaWeb
             {
                 TextBoxSpeedDemand.Text = robot.SpeedDemand.ToString();
                 TextBoxSteerDemand.Text = robot.SteerDemand.ToString();
-                TextBoxColor.Text = robot.Color.ToString();
+                TextBoxColor.Text = robot.Color.ToParseString();
 
                 HyperLinkArena.Text = robot.Arena.ToString();
                 HyperLinkArena.NavigateUrl = string.Format("Arena.aspx?arena={0}", robot.Arena.Handle);
@@ -45,7 +46,7 @@ namespace ArenaWeb
             {
                 robot.SpeedDemand = double.Parse(TextBoxSpeedDemand.Text);
                 robot.SteerDemand = double.Parse(TextBoxSteerDemand.Text);
-                robot.Color = Guidance.Drawing.Color_Extension.Parse(TextBoxColor.Text);
+                robot.Color = Color_Extension.Parse(TextBoxColor.Text);
             }
             catch { }
             robot.Arena.Update();
